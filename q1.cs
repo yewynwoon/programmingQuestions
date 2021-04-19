@@ -8,7 +8,8 @@ public static class Program
         string[] delimitedWords = str.Split(' ');
         int longest = 1;
         string longestWord ='';
-        int[] countObjects = {};
+        HashSet<int> uniqueObjects = new HashSet<int>();
+        int counter = 0;
 
         for (int i = 0; i < str.length; i++)
         {
@@ -16,9 +17,9 @@ public static class Program
 
             for (int j = 0; j < word.length; j++)
             {
-               if (countObjects[word[j]] == countObjects[word[j]] || 0)
+               if !(HashSet.Add(word[j]))
                {
-                   countObjects[word[j]]++;
+                   longest++;
                }
             }
         }
