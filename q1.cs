@@ -1,43 +1,49 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
-public static class Program
+namespace Test
 {
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        string str = "Today is the greatest day ever";
+        Console.WriteLine(letterCount(str));
+    }
+    
     public static string letterCount(string str)
     {
-        string[] delimitedWords = str.Split(' ');
+        List<string> delimitedWords = new List<string>(str.Split(' '));
         int longest = 1;
-        string longestWord ='';
+        string longestWord = " ";
 
-        for (int i = 0; i < str.length; i++)
+        for (int i = 0; i < delimitedWords.Count; i++)
         {
             string word = delimitedWords[i];
+			Console.WriteLine(word);
 
-            var characters = word.GroupBy(x => x).Where(y => y.Count() > 1).Select(z=>z.Key);
-
-            characters.ForEach(item=>
+            var characters = from w in word
+                             group w by w
+                             into grp
+                             where grp.Count() > 1
+                             select grp.Key;
+                
+            if (characters.Count() > longest)
             {
-                int counter = 0;
-                if (item.Count() > 1)
-                {
-                    counter++;
-
-                    if (counter > longest)
-                    {
-                        longest = counter;
-                        longestWord = word;
-                    }
-                }
-            });
-
-        if longest == 1
+                longest = characters.Count();
+                longestWord = word;
+            }
+            
+    }
+        if (longest == 1)
         {
-            return -1;
+            return "-1";
         }
         else
         {
             return longestWord;
         }
-
-    }
+}
+}
 }
