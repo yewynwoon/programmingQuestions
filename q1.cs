@@ -17,9 +17,16 @@ public static class Program
 
             characters.ForEach(item=>
             {
+                int counter = 0;
                 if (item.Count() > 1)
                 {
-                    longest++;
+                    counter++;
+
+                    if (counter > longest)
+                    {
+                        longest = counter;
+                        longestWord = word;
+                    }
                 }
             });
 
