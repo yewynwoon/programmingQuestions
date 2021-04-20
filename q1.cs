@@ -1,5 +1,5 @@
 using System;
-using System.Text.RegularExpressions;
+using System.Linq;
 
 public static class Program
 {
@@ -8,8 +8,7 @@ public static class Program
         string[] delimitedWords = str.Split(' ');
         int longest = 1;
         string longestWord ='';
-        HashSet<int> uniqueObjects = new HashSet<int>();
-        int counter = 0;
+        //HashSet<int> uniqueObjects = new HashSet<int>();
 
         for (int i = 0; i < str.length; i++)
         {
@@ -17,10 +16,11 @@ public static class Program
 
             for (int j = 0; j < word.length; j++)
             {
-               if !(HashSet.Add(word[j]))
+               /*if !(HashSet.Add(word[j]))
                {
                    longest++;
                }
+               */
             }
         }
 
