@@ -8,13 +8,20 @@ public static class Program
         string[] delimitedWords = str.Split(' ');
         int longest = 1;
         string longestWord ='';
-        //HashSet<int> uniqueObjects = new HashSet<int>();
 
         for (int i = 0; i < str.length; i++)
         {
             string word = delimitedWords[i];
 
             var characters = word.GroupBy(x => x).Where(y => y.Count() > 1).Select(z=>z.Key);
+
+            characters.ForEach(item=>
+            {
+                if (item.Count() > 1)
+                {
+                    longest++;
+                }
+            });
 
         if longest == 1
         {
