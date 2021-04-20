@@ -14,15 +14,7 @@ public static class Program
         {
             string word = delimitedWords[i];
 
-            for (int j = 0; j < word.length; j++)
-            {
-               /*if !(HashSet.Add(word[j]))
-               {
-                   longest++;
-               }
-               */
-            }
-        }
+            var characters = word.GroupBy(x => x).Where(y => y.Count() > 1).Select(z=>z.Key);
 
         if longest == 1
         {
