@@ -23,11 +23,9 @@ public class Program
             string word = delimitedWords[i];
 			Console.WriteLine(word);
 
-            var characters = from w in word
-                             group w by w
-                             into grp
-                             where grp.Count() > 1
-                             select grp.Key;
+            var characters = word.GroupBy(w => w)
+                            .Where(grp => grp.Count() > 1)
+                            .Select(grp => grp.Key);
                 
             if (characters.Count() > longest)
             {
