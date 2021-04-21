@@ -17,20 +17,27 @@ public static class Program
         string[] dic = strArr[1].Split(',');
 		List<string> dictionary = new List<string>();
 		List<string> foundWords = new List<string>();
+		int count = 0;
 	
 		dictionary.AddRange(dic);
 		char[] characters = strArr[0].ToCharArray();
+		List<char> charactersList = characters.OfType<char>().ToList();
 
-        for (int i = 0; i < characters.Length; i++)
+        while (charactersList.Any())
         {
 			// combine string from char 0 to i
-			string word = new string(characters, 0, i);
+			string word = new string(charactersList.ToArray(), 0, count + 1);
 			// if combined string is in dictionary
+			Console.WriteLine(word);
+			count++;
             if (dictionary.Contains(word))
 			{
-				// return words
+				// add found word to list
 				foundWords.Add(word);
-			}	
+				// delete found word from list
+				charactersList.RemoveRange(0,count);
+				count = 0;
+			}
         }
 		
 		if (foundWords.Any())
