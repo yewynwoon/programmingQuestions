@@ -14,31 +14,15 @@ public static class Program
 	
     public static string WordSplit(string[] strArr)
     {
-        string[] dic = strArr[1].Split(',');
-		List<string> dictionary = new List<string>();
-		List<string> foundWords = new List<string>();
-		int count = 0;
-	
-		dictionary.AddRange(dic);
-		char[] characters = strArr[0].ToCharArray();
-		List<char> charactersList = characters.OfType<char>().ToList();
+		var foundWords = new List<string>();
+        var dictionary = strArr[1].Split(',').
+						ToList();
 
-        while (charactersList.Any())
-        {
-			// combine string from char 0 to i
-			string word = new string(charactersList.ToArray(), 0, count + 1);
-			// if combined string is in dictionary
-			Console.WriteLine(word);
-			count++;
-            if (dictionary.Contains(word))
-			{
-				// add found word to list
-				foundWords.Add(word);
-				// delete found word from list
-				charactersList.RemoveRange(0,count);
-				count = 0;
-			}
-        }
+		foreach (var word in dictionary.Where(d => strArr[0].Contains(d)))
+		{
+			foundWords.Add(word);
+		}
+		
 		
 		if (foundWords.Any())
 		{
