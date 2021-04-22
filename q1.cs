@@ -14,26 +14,22 @@ public class Program
     
     public static string letterCount(string str)
     {
-        List<string> delimitedWords = new List<string>(str.Split(' '));
+        var delimitedWords = new List<string>(str.Split(' '));
         int longest = 1;
         string longestWord = " ";
-
-        for (int i = 0; i < delimitedWords.Count; i++)
-        {
-            string word = delimitedWords[i];
-			Console.WriteLine(word);
-
-            var characters = word.GroupBy(w => w)
-                            .Where(grp => grp.Count() > 1)
-                            .Select(grp => grp.Key);
+		
+		foreach (var word in delimitedWords)
+		{
+			var mostRepeated = word.GroupBy(w => w)
+                            .Max(grp => grp.Count());
                 
-            if (characters.Count() > longest)
+            if (mostRepeated > longest)
             {
-                longest = characters.Count();
+                longest = mostRepeated;
                 longestWord = word;
             }
-            
-    }
+		}
+		
         if (longest == 1)
         {
             return "-1";
