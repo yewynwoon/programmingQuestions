@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
 namespace Test
 {
 public static class Program
@@ -14,17 +10,16 @@ public static class Program
 	
     public static string WordSplit(string[] strArr)
     {
-		var foundWords = new List<string>();
-        var dictionary = strArr[1].Split(',').
-						ToList();
+        var dictionary = strArr[1].Split(',')
+						.ToList();
 
-		foreach (var word in dictionary.Where(d => strArr[0].Contains(d)))
-		{
-			foundWords.Add(word);
-		}
+		
+		var foundWords = dictionary.Where(d => strArr[0].Contains(d))
+							 .Select(d => d)
+							 .ToList();
 		
 		
-		if (foundWords.Any())
+		if (foundWords.Count() > 1)
 		{
 			return String.Join(", ", foundWords);
 		}
