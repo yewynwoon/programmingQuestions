@@ -17,15 +17,17 @@ public class Program
         var delimitedWords = new List<string>(str.Split(' '));
         int longest = 1;
         string longestWord = " ";
-            foreach (var wordTuple in from word in delimitedWords
-                                      let wordTuple = new Tuple<string, int>(word, word.GroupBy(w => w)
-                                    .Max(grp => grp.Count()))
-                                      where wordTuple.Item2 > longest
-                                      select wordTuple)
-            {
-                longest = wordTuple.Item2;
-                longestWord = wordTuple.Item1;
-            }
+        var countIEnum = delimitedWords.Select(word => word
+									.GroupBy(c => c)
+                            		.Max(grp => grp.Count())); 
+        
+		var wordTuple = new Tuple<string,int>(word, countIEnum.Max(x => x));
+
+        if (wordTuple.Item2 > longest)
+        {
+            longest = wordTuple.Item2;
+            longestWord = wordTuple.Item1;
+        }
 
         if (longest == 1)
         {
