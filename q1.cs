@@ -15,28 +15,22 @@ public class Program
     public static string letterCount(string str)
     {
         var delimitedWords = new List<string>(str.Split(' '));
-        int longest = 1;
-        string longestWord = " ";
-        var countIEnum = delimitedWords.Select(word => word
-									.GroupBy(c => c)
-                            		.Max(grp => grp.Count())); 
-        
-		var wordTuple = new Tuple<string,int>(word, countIEnum.Max(x => x));
+        var longestWord = delimitedWords.OrderByDescending(w => w.
+                                        GroupBy(c => c).
+                                        Count()).
+                                        First();
 
-        if (wordTuple.Item2 > longest)
-        {
-            longest = wordTuple.Item2;
-            longestWord = wordTuple.Item1;
-        }
-
-        if (longest == 1)
-        {
-            return "-1";
-        }
-        else
+        if (longestWord != "")
         {
             return longestWord;
         }
+        else
+        {
+            return "-1";
+        }
+        
+        
+
 }
 }
 }
