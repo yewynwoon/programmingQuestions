@@ -19,7 +19,7 @@ public static class Program
 							 .ToList();
 		
 		
-		if (foundWords.Count() > 1)
+		if (foundWords.Count() = 2)
 		{
 			return String.Join(", ", foundWords);
 		}
