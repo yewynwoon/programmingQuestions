@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 namespace Test
 {
 public static class Program
@@ -10,16 +13,13 @@ public static class Program
 	
     public static string WordSplit(string[] strArr)
     {
-        var dictionary = strArr[1].Split(',')
-						.ToList();
+		
+		var foundWords = strArr[1].Split(',')
+                                .Where(d => strArr[0].Contains(d))
+							    .Select(d => d);
+	
 
-		
-		var foundWords = dictionary.Where(d => strArr[0].Contains(d))
-							 .Select(d => d)
-							 .ToList();
-		
-		
-		if (foundWords.Count() = 2)
+		if (foundWords.Count() == 2)
 		{
 			return String.Join(", ", foundWords);
 		}

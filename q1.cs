@@ -14,11 +14,9 @@ public class Program
     
     public static string letterCount(string str)
     {
-        var delimitedWords = new List<string>(str.Split(' '));
-        var longestWord = delimitedWords.OrderByDescending(w => w.
+        var longestWord = str.Split(' ').OrderByDescending(w => w.
                                         GroupBy(c => c).
-                                        Count()).
-                                        First();
+                                        Max(grp => grp.Count())).First();
 
         if (longestWord != "")
         {
